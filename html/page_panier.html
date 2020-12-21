@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/sass/style.css" />
+    <link rel="icon" type="image/png" href="/images/icone/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/icone/favicon.ico" />
+    <meta
+      name="msapplication-square150x150logo"
+      content="../images/icone/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <meta
+      name="description"
+      content="Se démarquer des grands site e-commerce comme Amazon en créant des applications thématiques ne vendant qu’un seul groupe de produits."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Se démarquer des grands site e-commerce</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="banniere"></div>
+    </header>
+
+    <nav class="nav_bar">
+      <div class="nav_item">
+        <a href="../index.html"
+          ><i class="fas fa-arrow-circle-left"> Accueil</i></a
+        >
+      </div>
+    </nav>
+
+    <main>
+      <!-- Section Résumé panier -->
+      <div class="panier">
+        <h1>Résumé de votre panier</h1>
+      </div>
+
+      <div class="resume">
+        <table class="panier_clt">
+          <tbody class="panier_client" id="style_panier"></tbody>
+        </table>
+
+        <div class="total_commande">
+          <p id="montant_total"></p>
+        </div>
+      </div>
+
+      <div class="info_commande">
+        <h1>Vos informations de commande</h1>
+      </div>
+
+      <!-- Section Formulaire -->
+
+      <form method="POST" id="commande_client" class="form_commande">
+        <div class="form_partie">
+          <div class="form_partie_1">
+            <div>
+              <!-- Input prénom -->
+              <label for="firstName"></label>
+              <input
+                type="text"
+                id="firstName"
+                placeholder="Votre Prénom"
+                autocomplete="on"
+                required
+                class="taille_imput_max"
+              />
+            </div>
+
+            <div>
+              <!-- Nom -->
+              <label for="lastName"></label>
+              <input
+                type="text"
+                id="lastName"
+                placeholder="Votre Nom"
+                autocomplete="on"
+                required
+                class="taille_imput_max"
+              />
+            </div>
+
+            <div>
+              <!-- Input Adresse -->
+              <label for="address"></label>
+              <input
+                type="text"
+                id="address"
+                placeholder="Votre adresse complète"
+                autocomplete="on"
+                required
+                class="taille_imput_max"
+              />
+            </div>
+          </div>
+
+          <div class="form_partie_1">
+            <div>
+              <!-- Input Ville -->
+              <label for="city"></label>
+              <input
+                type="text"
+                id="city"
+                placeholder="La ville où vous habitez"
+                autocomplete="on"
+                required
+                class="taille_imput_max"
+              />
+            </div>
+
+            <div>
+              <!-- Input email -->
+              <label for="email"></label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Votre adresse e-mail"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                autocomplete="on"
+                required
+                class="taille_imput_max"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="button">
+          <button type="submit" id="button_order">Valider ma commande</button>
+        </div>
+      </form>
+
+      <!--Fin Section formulaire -->
+    </main>
+
+    <footer>
+      <section class="section__box__footer">
+        <div class="box__footer">
+          <h2 class="box__footer__titre">Orinoco</h2>
+          <p class="box__footer__item__1">CGV & CGU</p>
+          <p class="box__footer__item__2">Mentions Légales</p>
+          <p class="box__footer__item__3">Politique de confidentialité</p>
+          <p class="box__footer__item__4">
+            <a href="mailto:m.bluth@example.com">Contact</a>
+          </p>
+        </div>
+      </section>
+    </footer>
+
+    <script src="/js/page_panier.js"></script>
+  </body>
+</html>

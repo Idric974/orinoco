@@ -1,0 +1,50 @@
+%box_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 10px 0px 10px 0px;
+}
+
+%box_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 10px 0px 10px 0px;
+}
+
+%banniere {
+  background-image: url(/images/banniere/banniere.png);
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @media screen and (min-width: 666px) and (max-width: 991px) {
+    height: 200px;
+  }
+
+  @media screen and (min-width: 991px) {
+    height: 400px;
+  }
+}
+
+%centrer_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%bg_image {
+  width: 96%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px 10px 0px 0px;
+}
