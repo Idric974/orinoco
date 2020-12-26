@@ -10,16 +10,16 @@ const urlparams = new URLSearchParams(queryString);
 //⇓⇓ Affiche les données de façon formaté dans la console⇓⇓
 console.log(urlparams);
 
-//⇓⇓ Recuper l’ID du produit ⇓⇓
-const montantCommande = urlparams.get("Montant_Commande");
+//⇓⇓ Recuper l’ID du product ⇓⇓
+const amountOrder = urlparams.get("totalAmount");
 
-const productId = urlparams.get("Id_Commande");
+const orderId = urlparams.get("orderId");
 
-//⇓⇓ Affiche l’ID du produit dans la console⇓⇓
-console.log(productId);
+//⇓⇓ Affiche l’ID du product dans la console⇓⇓
+console.log(orderId);
 
 document.getElementById(
   "confirmation"
-).innerText = `Voici le rappel du montant de votre commande: ${montantCommande}€
+).innerText = `Voici le rappel du montant de votre commande: ${amountOrder}€
  
-Votre numéro de commande est le : ${productId}`;
+Votre numéro de commande est le : ${orderId}`;

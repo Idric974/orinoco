@@ -1,61 +1,63 @@
 //⇓⇓ Recuper les informations dans le localStorage⇓⇓
-let oldItems = localStorage.getItem("panier");
+let oldItems = localStorage.getItem("basket");
 
 //⇓⇓ Format les information en JSON⇓⇓
-let recupPanier = JSON.parse(localStorage.getItem("panier"));
+let recupbasket = JSON.parse(localStorage.getItem("basket"));
 
 //⇓⇓ Affiche les information en JSON ⇓⇓
-console.log(recupPanier);
+console.log(recupbasket);
 
+//⇓⇓ Déclare un tableau vide pour insérer les ID ⇓⇓
 const _ids = [];
 
 //⇓⇓ Condition qui affiche une message si le panier est vide ⇓⇓
-if (recupPanier == null) {
-  let infoPanier = "Votre panier est vide 😲";
-  document.getElementById("montant_total").innerText = infoPanier;
+if (recupbasket == null) {
+  let infobasket = "Votre panier est vide 😲";
+  document.getElementById("order_message").innerText = infobasket;
 }
 
 //⇓⇓ Initialise une variable pour le calcule du montant du panier⇓⇓
-montantTotal = 0;
+totalAmount = 0;
 
-//⇓⇓ Recuper les informations dans le panier ⇓⇓
-recupPanier.forEach((panier) => {
-  console.log(panier);
+//⇓⇓ Recuper les informations dans le panier et les places dans le tableau  créer plus haut ⇓⇓
+recupbasket.forEach((basket) => {
+  console.log(basket);
 
-  //⇓⇓ Récupèr les ID de commande ⇓⇓.
-  _ids.push(panier._id);
+  //⇓⇓ Récupèr les ID de commande et les places dans le tableau  créer plus haut⇓⇓.
+  _ids.push(basket._id);
+  console.log(_ids);
 
   //⇓⇓ Calcule le montant total de la commande ⇓⇓.
-  montantTotal += panier.totalLigne;
+  totalAmount += basket.totalLigne;
 
   //⇓⇓ Création élément 'ul' pour chaque index ⇓⇓.
-  let listePanier = document.createElement("ul");
+  let listebasket = document.createElement("ul");
 
   //⇓⇓ Met dans les ‘tr’ les infos de l’API ⇓⇓.
-  listePanier.innerHTML = `
+  listebasket.innerHTML = `
                     
             <ul>
-                <li><img src=${panier.image}  class="image_panier" ></li> 
+                <li><img src=${basket.image}  class="image_panier" ></li> 
                 <li class="description_panier">
-                Votre ${panier.name} 
-                de couleur ${panier.color}
-                à ${panier.price}€
-                Qté:${panier.qte}
-                pour un total ${panier.totalLigne}€.
+                Votre ${basket.name} 
+                de couleur ${basket.color}
+                à ${basket.price}€
+                Qté:${basket.qte}
+                pour un total ${basket.totalLigne}€.
                 </li>
 
             </li>
 
         `;
 
-  //⇓⇓ Ecrit les 'tr'  dans HTML ⇓⇓.
-  document.querySelector("tbody").appendChild(listePanier);
+  //⇓⇓ Ecrit les 'tr' dans HTML ⇓⇓.
+  document.querySelector("tbody").appendChild(listebasket);
 });
 
 //⇓⇓ Ecrit le montant total de la commande dans le DOM⇓⇓.
 document.getElementById(
-  "montant_total"
-).innerText = `Le total de votre commande est de: ${montantTotal}€`;
+  "order_message"
+).innerText = `Le total de votre commande est de: ${totalAmount}€`;
 
 //⇓⇓ Récupère la totalité du formulaire⇓⇓.
 const $commande_client = document.getElementById("commande_client");
@@ -84,7 +86,7 @@ $commande_client.addEventListener("submit", function (e) {
   }
 
   //⇓⇓ Récupère le contenu des champs du formulaire ⇓⇓.
-  const commandeClient = {
+  const customerOrder = {
     contact: {
       firstName: $firstName.value,
       lastName: $lastName.value,
@@ -96,7 +98,7 @@ $commande_client.addEventListener("submit", function (e) {
     products: [_ids],
   };
 
-  console.log(commandeClient);
+  console.log(customerOrder);
 
   //⇓⇓ URL de la requête⇓⇓.
   let url = "http://localhost:3000/api/teddies/order";
@@ -104,7 +106,7 @@ $commande_client.addEventListener("submit", function (e) {
   //⇓⇓ Paramètres de la requête⇓⇓.
   const parametresDeRequete = {
     method: "POST",
-    body: JSON.stringify(commandeClient),
+    body: JSON.stringify(customerOrder),
     headers: new Headers({
       "Content-Type": "application/json; charset=UTF-8 ",
     }),
@@ -117,9 +119,9 @@ $commande_client.addEventListener("submit", function (e) {
       console.log(response);
       //alert(JSON.stringify(response));
 
-      let idCommande = response.orderId;
+      let orderId = response.orderId;
 
-      window.location.href = `/html/order.html?Id_Commande=${idCommande}&Montant_Commande=${montantTotal}`;
+      window.location.href = `/html/order.html?orderId=${orderId}&totalAmount=${totalAmount}`;
     })
 
     .catch((error) => alert("Erreur : " + error));
