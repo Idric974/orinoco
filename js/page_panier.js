@@ -62,6 +62,34 @@ document.getElementById(
 //⇓⇓ Récupère la totalité du formulaire⇓⇓.
 const $commande_client = document.getElementById("commande_client");
 
+const validEmail = function (str) {
+  //⇓⇓ Création de la RegExp pour validation email
+  let emailRegExp = new RegExp(
+    "^[a-zA-Z-9.-_]+[@]{1}[a-zA-Z-9.-_]+[.]{1}[a-z]{2,9}$",
+    "g"
+  );
+
+  if (emailRegExp.test(str)) {
+    console.log("E-mail Valide");
+    return true;
+  } else {
+    console.log("E-mail non Valide");
+    return false;
+  }
+};
+
+const noNumberInField = function (str) {
+  //⇓⇓ Création de la RegExp pour validation email
+  const letters = /^[A-Za-z\s]+$/;
+  if (str.match(letters)) {
+    console.log("OK");
+    return true;
+  } else {
+    console.log("Pas Ok");
+    return false;
+  }
+};
+
 //⇓⇓ Récupère les champs du formulaire⇓⇓.
 const $firstName = document.getElementById("firstName");
 const $lastName = document.getElementById("lastName");
@@ -79,7 +107,10 @@ $commande_client.addEventListener("submit", function (e) {
     $lastName.value.trim().length < 2 ||
     $address.value.trim().length < 2 ||
     $city.value.trim().length < 2 ||
-    $email.value.trim().length < 2
+    !noNumberInField($firstName.value) ||
+    !noNumberInField($lastName.value) ||
+    !noNumberInField($city.value) ||
+    !validEmail($email.value)
   ) {
     alert("Erreur de saisi tous les champs doivent être complétés");
     return;
@@ -125,4 +156,6 @@ $commande_client.addEventListener("submit", function (e) {
     })
 
     .catch((error) => alert("Erreur : " + error));
+
+  localStorage.removeItem("basket");
 });
